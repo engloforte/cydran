@@ -7,12 +7,16 @@ import ObjectUtils from "@/util/ObjectUtils";
 import ScopeImpl from "@/model/ScopeImpl";
 import Setter from "@/model/Setter";
 import Mvvm from "@/mvvm/Mvvm";
+import Hooks from "@/support/Hooks";
+import HooksImpl from "@/support/HooksImpl";
 
 const requireNotNull = ObjectUtils.requireNotNull;
 
 const DEFAULT_REDUCER: (input: any) => any = (input) => input;
 
 class ModelMediatorImpl<T> implements ModelMediator<T> {
+
+	public static readonly EVALUATE_HOOKS: Hooks<ModelMediatorImpl<any>> = new HooksImpl<ModelMediatorImpl<any>>();
 
 	private logger: Logger;
 
@@ -77,6 +81,8 @@ class ModelMediatorImpl<T> implements ModelMediator<T> {
 	}
 
 	public evaluate(): boolean {
+		ModelMediatorImpl.EVALUATE_HOOKS.notify(this);
+
 		if (!this.target) {
 			return false;
 		}
@@ -133,6 +139,10 @@ class ModelMediatorImpl<T> implements ModelMediator<T> {
 
 	public setReducer(reducerFn: (input: T) => any): void {
 		this.reducerFn = (reducerFn === null) ? DEFAULT_REDUCER : reducerFn;
+	}
+
+	public getMvvm(): Mvvm {
+		return this.mvvm;
 	}
 
 	protected getExpression(): string {

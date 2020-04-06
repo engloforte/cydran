@@ -6,11 +6,14 @@ import LoggerFactory from "@/logger/LoggerFactory";
 import Module from "@/module/Module";
 import ObjectUtils from "@/util/ObjectUtils";
 import Scope from "@/model/Scope";
+import Timer from "@/temporal/Timer";
 import { VALID_ID } from "@/constant/ValidationRegExp";
 import { Modules } from "@/module/Modules";
 import Nestable from "@/component/Nestable";
 import StageComponent from "@/stage/StageComponent";
 import { DEFAULT_MODULE_KEY, INTERNAL_DIRECT_CHANNEL_NAME } from "@/constant/Constants";
+import ModelMediatorImpl from "@/model/ModelMediatorImpl";
+import Properties from "@/config/Properties";
 
 const requireNotNull = ObjectUtils.requireNotNull;
 const requireValid = ObjectUtils.requireValid;
@@ -205,6 +208,8 @@ interface Stage {
 
 class StageImpl implements Stage {
 
+	private timer: Timer;
+
 	private started: boolean;
 
 	private rootSelector: string;
@@ -220,6 +225,24 @@ class StageImpl implements Stage {
 	private bottomComponentIds: ComponentIdPair[];
 
 	constructor(rootSelector: string) {
+		this.timer = new Timer(() => {
+			const matches: NodeListOf<HTMLElement> = Properties.getWindow().document.querySelectorAll(`[dev-tools-digested]`);
+
+			// tslint:disable-next-line
+			for (let i = 0; i < matches.length; i++) {
+				const match: HTMLElement = matches[i];
+
+				let count: number = parseInt(match.getAttribute("dev-tools-digested"), 10);
+				count--;
+
+				if (count > 0) {
+					match.setAttribute("dev-tools-digested", count + "");
+				} else {
+					match.removeAttribute("dev-tools-digested");
+				}
+			}
+		});
+
 		this.rootSelector = requireNotNull(rootSelector, "rootSelector");
 		this.logger = LoggerFactory.getLogger("Stage");
 		this.started = false;
@@ -295,7 +318,31 @@ class StageImpl implements Stage {
 	}
 
 	public broadcast(channelName: string, messageName: string, payload?: any): void {
-		Modules.broadcast(channelName, messageName, payload);
+		if (channelName === "devTools") {
+			if (messageName === "enableDigestTracing") {
+				ModelMediatorImpl.EVALUATE_HOOKS.add((mediator => {
+					mediator.getMvvm().getParent().getEl().setAttribute("dev-tools-digested", "2");
+				}));
+
+				const styles: string = `
+					[dev-tools-digested="2"] {
+						border: 3px dashed #ff0000 !important;
+					}
+
+					[dev-tools-digested="1"] {
+						border: 3px dashed #ff9999 !important;
+					}
+				`;
+
+				const styleElement: HTMLElement = Properties.getWindow().document.createElement("style");
+				styleElement.innerHTML = styles;
+				Properties.getWindow().document.querySelector("head").appendChild(styleElement);
+
+				this.timer.start();
+			}
+		} else {
+			Modules.broadcast(channelName, messageName, payload);
+		}
 	}
 
 	public registerConstant(id: string, instance: any): void {
