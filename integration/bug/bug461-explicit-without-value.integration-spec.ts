@@ -28,7 +28,7 @@ class ChildComponent extends Component {
 	private items: any[];
 
 	constructor() {
-		super(`<div><ul c:each="m().items" c:each:mode="generated"><template c:type="empty"><li>{{m().modelValue}}<br />{{v().first}}</li></template><template c:type="item"><div>text</div></template></ul></div>`);
+		super(`<div><ul c:each="m().items" c:each:mode="generated"><template c:type="empty" c:component="emptyChild"></ul></div>`);
 		this.items = [];
 		this.modelValue = "Some model value";
 	}
@@ -41,24 +41,36 @@ class ChildComponent extends Component {
 
 }
 
-test("v() or m() should be proxied for IMPLICIT component", () => {
+class EmptyComponent extends Component {
+
+	private localValue: string;
+
+	constructor() {
+		super(`<li>{{m().localValue}}<br />{{v().first}}</li>`);
+		this.localValue = "A Local Value";
+	}
+
+}
+
+test("v() or m() should be proxied for explicit component without a value", () => {
 	document.body.innerHTML = '<div id="app"></div>';
 
 	builder("#app")
-		.build()
+		.withPrototype("emptyChild", EmptyComponent)
 		.withInitializer((stage: Stage) => {
 			const childComponent: ChildComponent = new ChildComponent();
 			const parentComponent: ParentComponent = new ParentComponent();
 			parentComponent.setChild("body", childComponent);
 			stage.setComponent(parentComponent);
 
-			expect(document.body.innerHTML).toEqual(`<div id="app"><div><div><ul><li><!--#-->Some model value<!--#--><br><!--#-->Some Value<!--#--></li></ul></div></div></div>`);
+			expect(document.body.innerHTML).toEqual(`<div id="app"><div><div><ul><li><!--#-->A Local Value<!--#--><br><!--#-->Some Value<!--#--></li></ul></div></div></div>`);
 
 			parentComponent.update();
 			childComponent.update();
 
-			expect(document.body.innerHTML).toEqual(`<div id="app"><div><div><ul><li><!--#-->Some other model value<!--#--><br><!--#-->Some other value<!--#--></li></ul></div></div></div>`);
+			expect(document.body.innerHTML).toEqual(`<div id="app"><div><div><ul><li><!--#-->A Local Value<!--#--><br><!--#-->Some other value<!--#--></li></ul></div></div></div>`);
 		})
+		.build()
 		.start();
 
 });

@@ -494,7 +494,9 @@ interface ElementMediatorDependencies {
 
 interface ComponentFactory {
 
-	create(item?: any): Nestable;
+	createForItem(item: any): Nestable;
+
+	createForUtility(valueFn: () => any): Nestable;
 
 }
 
