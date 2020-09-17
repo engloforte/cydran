@@ -180,7 +180,7 @@ interface Properties {
 
 	getAsString(key: string): string;
 
-	isProtectedKey(key: string): boolean;
+	isPropertyProtected(key: string): boolean;
 
 }
 

@@ -1010,19 +1010,21 @@ class PropertiesImpl implements MutableProperties {
 	}
 
 	public set(key: string, value: any): MutableProperties {
+
 		requireNotNull(key, "key");
 
-		if (this.isProtectedKey(key)) {
+		if (this.isPropertyProtected(key)) {
 			throw new ProtectedPropertyError(`The "${ key }" property is reserved/protected. New value of "${ value }" will not be set.`);
 		}
 
+		this.properties[key] = value;
 		return this;
 	}
 
 	public remove(key: string): MutableProperties {
 		requireNotNull(key, "key");
 
-		if (this.isProtectedKey(key)) {
+		if (this.isPropertyProtected(key)) {
 			throw new ProtectedPropertyError(`The "${ key }" property is reserved/protected and will not be removed.`);
 		}
 
@@ -1048,7 +1050,7 @@ class PropertiesImpl implements MutableProperties {
 				continue;
 			}
 
-			if (this.isProtectedKey(key)) {
+			if (this.isPropertyProtected(key)) {
 				const errMsg: string = `The "${ key }" property is reserved and protected. The proposed new value of "${ values[key] }" will not be set.`;
 				throw new ProtectedPropertyError(errMsg);
 			}
@@ -1066,6 +1068,10 @@ class PropertiesImpl implements MutableProperties {
 		return child;
 	}
 
+	public isPropertyProtected(key: string): boolean {
+		// TODO: finish implementation
+		return false;
+	}
 }
 
 class IdGenerator {
