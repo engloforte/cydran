@@ -99,6 +99,8 @@ interface StageBuilder {
 
 	withInitializer(callback: (stage?: Stage) => void): StageBuilder;
 
+	withDisposer(callback: (stage?: Stage) => void): StageBuilder;
+
 	withTraceLogging(): StageBuilder;
 
 	withDebugLogging(): StageBuilder;
@@ -375,7 +377,7 @@ interface Module extends Register {
 
 }
 
-interface Register {
+interface Register extends Disposable {
 
 	registerConstant(id: string, instance: any): any | void;
 
@@ -395,7 +397,7 @@ interface Mvvm extends MediatorSource {
 
 	nestingChanged(): void;
 
-	dispose(): void;
+	$dispose(): void;
 
 	getId(): string;
 
@@ -591,7 +593,7 @@ interface ComponentInternals extends Digestable {
 
 	broadcastGlobally(channelName: string, messageName: string, payload?: any): void;
 
-	dispose(): void;
+	$dispose(): void;
 
 	getEl(): HTMLElement;
 
@@ -655,7 +657,7 @@ interface ElementVisitor<E extends HTMLElement | Text | Comment, C> {
 
 interface Disposable {
 
-	dispose(): void;
+	$dispose(): void;
 
 }
 
@@ -955,7 +957,7 @@ interface Validators {
 
 }
 
-interface RegistryStrategy {
+interface RegistryStrategy extends Disposable {
 
 	get<T>(id: string, gettable: Gettable): T;
 
@@ -987,7 +989,7 @@ interface ElementReference<E extends HTMLElement> {
 
 }
 
-interface Factory<T> {
+interface Factory<T> extends Disposable {
 
 	get(gettable: Gettable): T;
 
