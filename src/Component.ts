@@ -959,12 +959,24 @@ class DomWalkerImpl<C> implements DomWalker<C> {
 class PropertiesImpl implements MutableProperties {
 
 	private parent: Properties;
+	private children: PropertiesImpl[];
 
 	private properties: SimpleMap<any>;
 
 	constructor(parent?: Properties) {
 		this.parent = parent;
+		this.children = [];
 		this.clear();
+	}
+
+	public addChildProperties(props: PropertiesImpl): void {
+		this.children.push(props);
+	}
+
+	public valueChangeNotify(key: string): void {
+		for (const child of this.children) {
+			// TODO: finish method
+		}
 	}
 
 	public get<T>(key: string): T {
@@ -1023,6 +1035,7 @@ class PropertiesImpl implements MutableProperties {
 
 	public clear(): MutableProperties {
 		this.properties = {};
+		this.children = [];
 
 		return this;
 	}
@@ -1047,7 +1060,10 @@ class PropertiesImpl implements MutableProperties {
 	}
 
 	public extend(): MutableProperties {
-		return new PropertiesImpl(this);
+		const child: PropertiesImpl = new PropertiesImpl(this);
+		this.addChildProperties(child);
+		// TODO: finish implementation
+		return child;
 	}
 
 }
