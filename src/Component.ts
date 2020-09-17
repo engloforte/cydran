@@ -1000,13 +1000,19 @@ class PropertiesImpl implements MutableProperties {
 	public set(key: string, value: any): MutableProperties {
 		requireNotNull(key, "key");
 
-		this.properties[key] = value;
+		if (this.isProtectedKey(key)) {
+			throw new ProtectedPropertyError(`The "${ key }" property is reserved/protected. New value of "${ value }" will not be set.`);
+		}
 
 		return this;
 	}
 
 	public remove(key: string): MutableProperties {
 		requireNotNull(key, "key");
+
+		if (this.isProtectedKey(key)) {
+			throw new ProtectedPropertyError(`The "${ key }" property is reserved/protected and will not be removed.`);
+		}
 
 		if (this.properties.hasOwnProperty(key)) {
 			delete this.properties[key];
@@ -1027,6 +1033,11 @@ class PropertiesImpl implements MutableProperties {
 		for (const key in values) {
 			if (!values.hasOwnProperty(key)) {
 				continue;
+			}
+
+			if (this.isProtectedKey(key)) {
+				const errMsg: string = `The "${ key }" property is reserved and protected. The proposed new value of "${ values[key] }" will not be set.`;
+				throw new ProtectedPropertyError(errMsg);
 			}
 
 			this.properties[key] = values[key];
