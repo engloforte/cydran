@@ -63,7 +63,7 @@ import {
 	ComponentOptions
 } from "@/Interfaces";
 import { INTERNAL_DIRECT_CHANNEL_NAME, MODULE_FIELD_NAME, NO_OP_FN, EMPTY_OBJECT_FN, VALID_ID } from "@/Constants";
-import { TemplateError, UnknownRegionError, SetComponentError, UnknownElementError, ModuleAffinityError } from "@/Errors";
+import { TemplateError, UnknownRegionError, SetComponentError, UnknownElementError, ModuleAffinityError, ProtectedPropertyError } from "@/Errors";
 import { PubSubImpl } from "@/Message";
 import { LockedRegionError } from "@/Errors";
 import {
