@@ -180,6 +180,8 @@ interface Properties {
 
 	getAsString(key: string): string;
 
+	isProtectedKey(key: string): boolean;
+
 }
 
 interface MutableProperties extends Properties {
