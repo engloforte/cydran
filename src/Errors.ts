@@ -72,6 +72,14 @@ class NullValueError extends CydranError {
 
 }
 
+class ProtectedPropertyError extends CydranError {
+
+	constructor(msg: string) {
+		super(msg);
+	}
+
+}
+
 class RecursionError extends CydranError {
 
 	constructor(msg: string) {
@@ -161,6 +169,7 @@ export {
 	MalformedOnEventError,
 	ModuleAffinityError,
 	NullValueError,
+	ProtectedPropertyError,
 	RecursionError,
 	RegistrationError,
 	ScopeError,
