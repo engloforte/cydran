@@ -160,6 +160,21 @@ class ValidationError extends CydranError {
 
 }
 
+class UnknownStateError extends CydranError {
+
+	constructor(msg: string) {
+		super(msg);
+	}
+
+}
+class UnknownInputError extends CydranError {
+
+	constructor(msg: string) {
+		super(msg);
+	}
+
+}
+
 export {
 	CydranError,
 	AmbiguousMarkupError,
@@ -179,5 +194,7 @@ export {
 	UnknownComponentError,
 	UnknownElementError,
 	UnknownRegionError,
-	ValidationError
+	ValidationError,
+	UnknownStateError,
+	UnknownInputError
 };
