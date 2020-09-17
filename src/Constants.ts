@@ -10,7 +10,7 @@ const CYDRAN_KEY: string = "cydran";
 const STRING_TYPE = "string";
 const NESTING_CHANGED: string = "NESTING_CHANGED";
 const VALID_ID: RegExp = /^[a-zA-Z][a-zA-Z0-9\$\@\-\_\.\:\\\/]*$/m;
-const VALID_KEY: RegExp = new RegExp(/^[a-zA-Z\$\_][a-zA-Z0-9\$\_]*$/);
+const VALID_KEY: RegExp = /^[a-zA-Z\$\_][a-zA-Z0-9\$\_]*$/;
 
 function NO_OP_FN() {
 	// Intentionally do nothing
