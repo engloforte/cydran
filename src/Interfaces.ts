@@ -182,7 +182,9 @@ interface Properties {
 
 	getAsString(key: string): string;
 
-	isPropertyProtected(key: string): boolean;
+	isLocked(key: string): boolean;
+
+	setLocked(key: string, locked: boolean): void;
 
 }
 
