@@ -963,10 +963,12 @@ class PropertiesImpl implements MutableProperties {
 	private children: PropertiesImpl[];
 
 	private properties: SimpleMap<any>;
+	private locked: SimpleMap<any>;
 
 	constructor(parent?: Properties) {
 		this.parent = parent;
 		this.children = [];
+		this.locked = [];
 		this.clear();
 	}
 
@@ -974,9 +976,11 @@ class PropertiesImpl implements MutableProperties {
 		this.children.push(props);
 	}
 
-	public valueChangeNotify(key: string): void {
+	public notifyChildren(key: string, value: boolean): void {
 		for (const child of this.children) {
-			// TODO: finish method
+			if (value) {
+				//
+			}
 		}
 	}
 
@@ -1011,10 +1015,9 @@ class PropertiesImpl implements MutableProperties {
 	}
 
 	public set(key: string, value: any): MutableProperties {
-
 		requireNotNull(key, "key");
 
-		if (this.isPropertyProtected(key)) {
+		if (this.isLocked(key)) {
 			throw new ProtectedPropertyError(`The "${ key }" property is reserved/protected. New value of "${ value }" will not be set.`);
 		}
 
@@ -1025,7 +1028,7 @@ class PropertiesImpl implements MutableProperties {
 	public remove(key: string): MutableProperties {
 		requireNotNull(key, "key");
 
-		if (this.isPropertyProtected(key)) {
+		if (this.isLocked(key)) {
 			throw new ProtectedPropertyError(`The "${ key }" property is reserved/protected and will not be removed.`);
 		}
 
@@ -1051,7 +1054,7 @@ class PropertiesImpl implements MutableProperties {
 				continue;
 			}
 
-			if (this.isPropertyProtected(key)) {
+			if (this.isLocked(key)) {
 				const errMsg: string = `The "${ key }" property is reserved and protected. The proposed new value of "${ values[key] }" will not be set.`;
 				throw new ProtectedPropertyError(errMsg);
 			}
@@ -1069,9 +1072,13 @@ class PropertiesImpl implements MutableProperties {
 		return child;
 	}
 
-	public isPropertyProtected(key: string): boolean {
-		// TODO: finish implementation
-		return false;
+	public isLocked(key: string): boolean {
+		return this.locked[key] || false;
+	}
+
+	public setLocked(key: string, locked?: boolean): void {
+		this.locked[key] = (locked) ? locked : false;
+		this.notifyChildren(key, this.locked[key]);
 	}
 }
 
