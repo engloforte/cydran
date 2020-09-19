@@ -1042,6 +1042,7 @@ class PropertiesImpl implements MutableProperties {
 	public clear(): MutableProperties {
 		this.properties = {};
 		this.children = [];
+		this.locked = {};
 
 		return this;
 	}
