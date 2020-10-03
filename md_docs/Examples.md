@@ -5,9 +5,8 @@
   Basic Messaging requies:
 1. ***``Channel``***
 1. ***``Message``***
-Message
-    3. Payload
-    4. Invoke Function
+1. ***``Payload``***
+1. ***``Invoke Function``***
 
 ## Templates
 
