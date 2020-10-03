@@ -7,7 +7,10 @@
 1. ***``Channel Name``*** - string defining the channel name
 1. ***``Payload``*** - can be any object, a number, string, array, object
 1. ***``Invoke Function``*** - when an object recieves a message from the pubSub system, it calls the invoke function passing the payload as a parameter.
-* Observations
+Observations:
+
+* Messages are handled immediately
+* Invoke Functions return value will always be lost (so don't try to return a value)
 
 		class myClass extends Component {
 			constructor() {
