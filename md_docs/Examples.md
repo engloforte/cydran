@@ -8,6 +8,7 @@
 1. Messaging
 2. Templatization
 3. Registry
+4. Initialization
 
 ## Messaging
 
@@ -86,3 +87,23 @@ Observations:
 	
 ###
 
+## Register
+The registry is a tool that allows easy access to functions, objects and properties.
+The registry key is unique and if a duplicate key is added it will... 
+
+ Let objectFromRegistry = this.get(key);
+
+WithSingleton - registers a new utility.  The first get call will instantiate a new object and return it.  All subsequent calls return the original object.
+WithPrototype - register a new utility.  A new object is created each time get is called.
+
+Key, object, list of parameters to pass to constructor
+
+WithInitialization
+
+WithCapability
+
+This gives modules the ability to add to the registry and do initialization as a unit when additional functions/objects/properties/features are added
+
+
+
+Many things can be put in the registry
