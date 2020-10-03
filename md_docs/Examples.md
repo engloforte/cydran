@@ -19,16 +19,16 @@
 			}
 			
 			sendMessage() {
-			
+				// publish a message directly
+				this.message("channelName", "messageType", '');
+				// broadcast a message
+				this.broadcast("channelName", "messageType", { payloadProperty1: 'prop1'});
+				// broadcast a message in the Cydran global scope
+				this.broadcastGlobally("channelName", "messageType", [ 'element1', 'element2' ]);
 			}
 			
 			myFunction(payload) {
-				// publish a message directly
-				this.message("channelName", "messageType", somePayLoad);
-				// broadcast a message
-				this.broadcast("channelName", "messageType", somePayLoad);
-				// broadcast a message in the Cydran global scope
-				this.broadcastGlobally("channelName", "messageType", somePayLoad);
+				console.log(payload);
 			}
     
     		}
