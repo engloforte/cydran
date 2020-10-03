@@ -66,10 +66,15 @@ Observations:
 	
 
 1. Templates evaluate ***``Aliases``*** 
+	With 1 exception, aliases are processed during every digest cycle.  If they have changed, the value written to the DOM is updated to reflect the change in data.
 
-	{{m().myComponentValue}} 
+	``{{m().myComponentValue}}``
 	
-1. Templates 
+1. Templates Element Properties
+	
+	``c:onclick="m().myFunction()"``
+
+	``
 
 ***NOTE: Templates are processed by the browser's Parser so any syntax that the Parser does not understand will loose meaning.  Where this becomes apparent quickly is IE11 does not unerstand the element `<template>`, so in order to use the element `<template>` a polyfill is required.***
 
