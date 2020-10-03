@@ -13,9 +13,9 @@
 				super(TEMPLATE_STRING);
 				
 				// listening for direct messages
-				this.on("messageType").invoke(this.myFunction);
+				this.on("messageType").invoke(this.myInvokeFunction);
 				// listening for broadcast messages
-				this.on("messageType").forChannel("channelName").invoke(this.myFunction);
+				this.on("messageType").forChannel("channelName").invoke(this.myInvokeFunction);
 			}
 			
 			sendMessage() {
