@@ -52,6 +52,7 @@ Observations:
 
 1. Templates can only have 1 root element.
 1. Templates evaluate ***``Aliases``*** 
+	{{m().myComponentValue}}
 1. Templates 
 
 ***NOTE: Templates are processed by the browser's Parser so any syntax that the Parser does not understand will loose meaning.  Where this becomes apparent quickly is IE11 does not unerstand the element `<template>`, so in order to use the element `<template>` a polyfill is required.***
