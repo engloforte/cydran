@@ -3,9 +3,9 @@
 ## Messaging
 
   Basic Messaging requies:
-1. ***``Channel Name``***
-1. ***``Message Type``***
-1. ***``Payload``***
+1. ***``Message Type``*** - string defining the messageType
+1. ***``Channel Name``*** - string defining the channel name
+1. ***``Payload``*** - can be any object, a number, string, array, object
 1. ***``Invoke Function``***
 
 		class myClass extends Component {
