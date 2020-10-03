@@ -40,7 +40,7 @@ Observations:
 				console.log(payload);
 			}
     
-    		}
+    	}
 		
 [//]: # (New List)
 1. another list
@@ -49,5 +49,6 @@ Templates are nothing more than a string representation of the DOM.  Cydran conv
 
 ***NOTE: Templates are processed by the browser's Parser so any syntax that the Parser does not understand will loose meaning.  Where this becomes apparent quickly is IE11 does not unerstand the element `<template>`, so in order to use the element `<template>` a polyfill is required.***
 
+	const TEMPLATE = "<div></div>"
 ###
 
