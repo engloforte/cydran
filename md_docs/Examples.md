@@ -51,7 +51,7 @@ Observations:
 [//]: # (New List)
 1. another list
 ## Templates
-Templates are nothing more than a string representation of the DOM.  Cydran converts the template string into a renderable DOM structure by evaluating cydran aliases. 
+Templates are strings that Cydran converts into a renderable DOM structure and then push into the web document.  During the rendering process Curran first processes all aliases and decoratersevaluating all  by evaluating cydran aliases. 
 
 Observations:
 
@@ -87,23 +87,21 @@ Observations:
 	
 ###
 
-## Register
-The registry is a tool that allows easy access to functions, objects and properties.
+## Registry
+The registry is a global utility that allows easy access to functions, objects and properties from any Curran object..
 The registry key is unique and if a duplicate key is added it will... 
 
  Let objectFromRegistry = this.get(key);
 
-WithSingleton - registers a new utility.  The first get call will instantiate a new object and return it.  All subsequent calls return the original object.
+``WithSingleton`` - registers a new utility.  The first get call will instantiate a new object and return it.  All subsequent calls return the original object.
 WithPrototype - register a new utility.  A new object is created each time get is called.
 
 Key, object, list of parameters to pass to constructor
 
-WithInitialization
+``WithInitialization``
 
-WithCapability
-
-This gives modules the ability to add to the registry and do initialization as a unit when additional functions/objects/properties/features are added
+WithCapability - This gives modules the ability to add to the registry and do initialization as a unit when additional functions/objects/properties/features are added
 
 
 
-Many things can be put in the registry
+
