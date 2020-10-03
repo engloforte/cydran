@@ -3,8 +3,9 @@
 ## Messaging
 
   Basic Messaging requies:
-1) ***``Channel``*** 1. Channel
-2. Message
+1. ***``Channel``***
+1. ***``Message``***
+Message
     3. Payload
     4. Invoke Function
 
