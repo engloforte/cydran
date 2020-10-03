@@ -7,6 +7,7 @@
 1. ***``Message``***
 1. ***``Payload``***
 1. ***``Invoke Function``***
+
 		class myClass extends Component {
 			constructor() {
 		// listening for direct messages
@@ -22,6 +23,7 @@
 		this.broadcastGlobally("channelName", "messageType", somePayLoad);
     
     		}
+		
 [//]: # (New List)
 1. another list
 ## Templates
