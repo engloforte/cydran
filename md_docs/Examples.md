@@ -5,6 +5,10 @@
 ### Immutable Data
 ### ???
 
+1. Messaging
+2. Templatization
+3. Registry
+
 ## Messaging
 
   Basic Messaging requies:
