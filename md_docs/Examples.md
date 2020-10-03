@@ -12,6 +12,7 @@
 1. ***``Channel Name``*** - string defining the channel name
 1. ***``Payload``*** - can be any object, a number, string, array, object
 1. ***``Invoke Function``*** - when an object recieves a message from the pubSub system, it calls the invoke function passing the payload as a parameter.
+
 Observations:
 
 * Messages are handled immediately
@@ -46,6 +47,12 @@ Observations:
 1. another list
 ## Templates
 Templates are nothing more than a string representation of the DOM.  Cydran converts the template string into a renderable DOM structure by evaluating cydran aliases. 
+
+Observations:
+
+1. Templates can only have 1 root element.
+1. Templates evaluate ***``Aliases``*** 
+1. Templates 
 
 ***NOTE: Templates are processed by the browser's Parser so any syntax that the Parser does not understand will loose meaning.  Where this becomes apparent quickly is IE11 does not unerstand the element `<template>`, so in order to use the element `<template>` a polyfill is required.***
 
