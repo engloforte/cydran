@@ -53,12 +53,16 @@ Observations:
 1. Templates can only have 1 root element.
 
 	Acceptable Templates
+	
 	* ``<div><div>Div1</div><div>Div2</div>...</div>``
-	* <div><span>Hello World</span> Whatever you want</div>
-	* <table><tr><td>Cell 1</td><td>Cell 1</td></tr></table>
+	
+	* ``<div><span>Hello World</span> Whatever you want</div>``
+	
+	* ``<table><tr><td>Cell 1</td><td>Cell 1</td></tr></table>``
 	
 	Unacceptable Templates
-	* <div></div><div></div>
+	
+	* ``<div></div><div></div>``
 	
 
 1. Templates evaluate ***``Aliases``*** 
