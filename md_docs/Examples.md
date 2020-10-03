@@ -1,5 +1,10 @@
 # Cydran Examples
 
+## Critial Javascript Principles
+
+### Immutable Data
+### ???
+
 ## Messaging
 
   Basic Messaging requies:
