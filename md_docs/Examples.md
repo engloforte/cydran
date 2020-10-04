@@ -49,7 +49,8 @@ Observations:
     	}
 		
 [//]: # (New List)
-
+	// An example of sending a message directly to the parent.
+	this.parent.getParent().message('messageType? or channelName?', "digest");
 
 ## Templates
 Templates are strings that Cydran converts into a renderable DOM structure and then push into the web document.  During the rendering process Curran first processes all aliases and decoratersevaluating all  by evaluating cydran aliases. 
@@ -81,6 +82,23 @@ Observations:
 	``c:onclick="m().myFunction()"``
 
 	``
+
+### Template Construction
+
+	``c:hidden``
+
+	``c:model``
+
+	``c:style``
+
+	``c:class``
+
+	``c:``
+
+	``c:if``
+
+	``c:if``
+
 
 ***NOTE: Templates are processed by the browser's Parser so any syntax that the Parser does not understand will loose meaning.  Where this becomes apparent quickly is IE11 does not unerstand the element `<template>`, so in order to use the element `<template>` a polyfill is required.***
 
@@ -124,6 +142,11 @@ Key, object, list of parameters to pass to constructor
 	
 	// Renders
 	... MYNAME ...
+	
+		or if used in withInitializer
+		
+	// Inside withInitializer callback function
+	stage.withCapability(scopeItemCapability)
 	
 ``withInitializer`` - Allows the initialization to happen in pieces.  A package can add its registry items to the registry and initialize things that are needed for it to perform correctly.
 
