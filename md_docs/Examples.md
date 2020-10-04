@@ -116,6 +116,15 @@ Key, object, list of parameters to pass to constructor
 		
 ``withScopeItem`` - 
 
+	// Create Registry Key
+	Stage.withScopeItem('upper', (str: string) => str.toUpperCase())
+	
+	// Template Fragment
+	... [[ upper("mYnAmE") ]] ...
+	
+	// Renders
+	... MYNAME ...
+	
 ``withInitializer`` - 
 		// asfd
 		// askldjf
