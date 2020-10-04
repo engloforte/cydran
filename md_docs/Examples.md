@@ -127,10 +127,33 @@ Key, object, list of parameters to pass to constructor
 	
 ``withInitializer`` - 
 
-		// asfd
-		// askldjf
+	// Main Stage Builder
+	const stage = builder("body")
+		.withDebugLogging()
+		.withCapability(initPackage)
+		.withInitializer((stage) => {
+			stage.setComponent(new App());
+			window.PackageObj2 = this.get('myKey2');
+			console.log('Stage Initialized');			
+		})
+		.build();
 
+	stage.start();
+	
+	// Package Builder
+	function initPackage(stage) {
+		stage
+			.withSingleton('myKey1', PackageObj1ToBeInstantiated)
+			.withPrototype('myKey2', PackageObj2ToBeInstantiated)
+			.withInitializer((stage) => {
+				window.PackageObj1 = this.get('myKey1');
+				console.log('Package Initialized');
+			}
+	}
 
+	// Output
+	Package Initialized
+	Stage Initialized
 
 ### Capabilities (Functions)
 ``WithCapability`` - This gives modules the ability to add to the registry and do initialization as a unit when additional functions/objects/properties/features are added
