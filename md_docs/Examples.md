@@ -49,6 +49,7 @@ Observations:
     	}
 		
 [//]: # (New List)
+
 	// An example of sending a message directly to the parent.
 	this.parent.getParent().message('messageType? or channelName?', "digest");
 
