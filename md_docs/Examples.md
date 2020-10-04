@@ -95,10 +95,25 @@ The registry key is unique and if a duplicate key is added it will...
 
 ``WithSingleton`` - registers a new utility.  The first get call will instantiate a new object and return it.  All subsequent calls return the original object.
 
- Stage.withSingleton('myKey1', MyClassToBeInstantiated)
+	// Create Registry Key
+ 	Stage.withSingleton('myKey1', MyClassToBeInstantiated)
+	
+	// Creates MyClassObject from new MyClassToBeInstantiated 
+	let MyClassObject = this.get('myKey1');
+	
+	// Returns previously created MyClassObject
+	let MyClassObjectCopy = this.get(myKey1');
 
 ``WithPrototype`` - register a new utility.  A new object is created each time get is called.
 
+	// Create Registry Key
+ 	Stage.withPrototype('myKey1', MyClassToBeInstantiated)
+	
+	// Creates MyClassObject1 from new MyClassToBeInstantiated 
+	let MyClassObject1 = this.get('myKey1');
+	
+	// Creates MyClassObject2 from new MyClassToBeInstantiated
+	let MyClassObject2 = this.get(myKey1');
 
 Key, object, list of parameters to pass to constructor
 
