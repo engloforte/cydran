@@ -114,7 +114,7 @@ The registry key is unique and if a duplicate key is added it will...
 
 Key, object, list of parameters to pass to constructor
 		
-``withScopeItem`` - 
+``withScopeItem`` - A function or property to be used in the template.
 
 	// Create Registry Key
 	Stage.withScopeItem('upper', (str: string) => str.toUpperCase())
@@ -125,7 +125,7 @@ Key, object, list of parameters to pass to constructor
 	// Renders
 	... MYNAME ...
 	
-``withInitializer`` - 
+``withInitializer`` - Allows the initialization to happen in pieces.  A package can add its registry items to the registry and initialize things that are needed for it to perform correctly.
 
 	// Main Stage Builder
 	const stage = builder("body")
