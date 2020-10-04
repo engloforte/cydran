@@ -118,6 +118,8 @@ Key, object, list of parameters to pass to constructor
   		"custom.property2": "xyz2"
   	})
 	
-	this.getProperties().get('custom.property2');
+	this.getProperties().get('cydran.production.enabled'); // returns true
+	this.getProperties().get('custom.property1'); // returns xyz1
+	this.getProperties().get('custom.property2'); // returns xyz2
 
 
