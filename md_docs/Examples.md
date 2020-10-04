@@ -84,13 +84,13 @@ Observations:
 ***NOTE: Templates are processed by the browser's Parser so any syntax that the Parser does not understand will loose meaning.  Where this becomes apparent quickly is IE11 does not unerstand the element `<template>`, so in order to use the element `<template>` a polyfill is required.***
 
 	const TEMPLATE = "<div></div>"
-	
-###
+
 
 ## Registry
 The registry is a global utility that allows easy access to functions, objects and properties from any Curran object..
 The registry key is unique and if a duplicate key is added it will... 
 
+### Objects
  Let objectFromRegistry = this.get(key);
 
 ``WithSingleton`` - registers a new utility.  The first get call will instantiate a new object and return it.  All subsequent calls return the original object.
@@ -104,10 +104,11 @@ Key, object, list of parameters to pass to constructor
 
 ``WithInitialization`` - 
 
+### Capabilities (Functions)
 ``WithCapability`` - This gives modules the ability to add to the registry and do initialization as a unit when additional functions/objects/properties/features are added
 
+### Properties
 
-## Properties
   	builder.withProperties({
   		"cydran.production.enabled": false,
   		"custom.property1": "xyz1"
