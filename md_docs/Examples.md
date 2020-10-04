@@ -32,7 +32,7 @@ Observations:
 				// listening for broadcast messages
 				this.on("messageType").forChannel("channelName").invoke(this.myInvokeFunction);
 			}
-			
+		
 			sendMessage() {
 				// publish a message directly
 				this.message("channelName", "messageType", '');
