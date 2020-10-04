@@ -107,5 +107,17 @@ Key, object, list of parameters to pass to constructor
 ``WithCapability`` - This gives modules the ability to add to the registry and do initialization as a unit when additional functions/objects/properties/features are added
 
 
+## Properties
+  	builder.withProperties({
+  		"cydran.production.enabled": false,
+  		"custom.property1": "xyz1"
+  	})
+
+  	builder.withProperties({
+  		"cydran.production.enabled": true,
+  		"custom.property2": "xyz2"
+  	})
+	
+	this.getProperties().get('custom.property2');
 
 
