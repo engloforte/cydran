@@ -6,7 +6,7 @@
 ### ???
 
 1. Messaging
-2. Templatization
+2. Components & Templates
 3. Registry
 4. Initialization
 
@@ -53,8 +53,23 @@ Observations:
 	// An example of sending a message directly to the parent.
 	this.parent.getParent().message('messageType? or channelName?', "digest");
 
-## Templates
-Templates are strings that Cydran converts into a renderable DOM structure and then push into the web document.  During the rendering process Curran first processes all aliases and decoratersevaluating all  by evaluating cydran aliases. 
+## Components & Templates & Regions
+
+A Component the cydran object that controls the HTML that the user sees.  A user Component is an extension of a Cydran Component and is made up of a Template (Visible) and Code (Invisible).
+
+		MyComponent extends cydran.Component {
+			constructor() {
+				let MyTemplate = "<div></div>";
+				super(Mytemplate); 
+			}
+		}
+
+Templates are (usually) strings that the Cydran Component converts into a renderable DOM structure and then push into the web document.  
+Templates are static and are processed using super during component construction.  I like to think of the Template and Component as a Coin with a Front (Template) and Back (Component), because the component controls the Template.  Another analogy to to call the Template a puppet and the Component is the puppet master;
+
+Regions in Template: Regions are template areas that hold other components.  A component can be placed, removed or swapped within a region. To extend the Puppet analogy, the puppet master can't remove the puppets hand, rather the puppet master places something (or nothing) into the puppets hand.  
+
+During the rendering process Curran first processes all aliases and decoratersevaluating all  by evaluating cydran aliases. 
 
 Observations:
 
