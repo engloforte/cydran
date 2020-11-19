@@ -3902,10 +3902,6 @@ class Each extends AbstractElementMediator<any[], HTMLElement, Params> {
 		const mode: string = this.getParams().mode || null;
 
 		switch (mode) {
-			case "generated":
-				this.idStrategy = new GeneratedIdStrategyImpl(idKey);
-				break;
-
 			case "none":
 				this.idStrategy = new NoneIdStrategyImpl(idKey);
 				break;
@@ -3915,7 +3911,7 @@ class Each extends AbstractElementMediator<any[], HTMLElement, Params> {
 				break;
 
 			default:
-				this.idStrategy = new InvalidIdStrategyImpl();
+				this.idStrategy = new GeneratedIdStrategyImpl(idKey);
 		}
 
 		this.idStrategy.init();
